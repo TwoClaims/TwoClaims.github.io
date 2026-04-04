@@ -21,6 +21,8 @@ Turned around in courage then.
 
 Early on this good news taught
 In vipers dens with danger fraught.
+Early martyr, Stephen's death
+Did not mute their shouted breath.
 
 Even James who knew Him best
 While He lived did not invest
@@ -102,3 +104,7 @@ The Minimal Facts approach allows scholars and apologists to construct a histori
 
 In summary, Habermas's Minimal Facts approach is a rigorous, historically grounded method that identifies a small set of widely accepted events surrounding Jesus' death and resurrection, forming a foundation for historical and apologetic analysis.
 
+## Additional Fact
+
+- Stephen died three to six months after Jesus' crucifixion, as indicated by the timeline of events in the New Testament. This period is supported by the references in Acts 5:19, which mentions an angel opening the gates of the prison, and the subsequent events of the early church following Stephen's death.
+- James the son of Zebedee:  He was put to death by Herod Agrippa I  shortly before the day of the Passover, in the year 44 or about 11 years after the death of Christ.  From Acts 12: 1-2.
