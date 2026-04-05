@@ -110,3 +110,6 @@ In summary, Habermas's Minimal Facts approach is a rigorous, historically ground
   - Stephen's stoning - despite capital punishment being something only the Romans were allowed to do - appears to be an "act of *deliberate passion*" because he so offended the leaders that he was addressing.
   - What's interesting is that a result of Stephen's death was that the believers scattered from Jerusalem. But Acts 8:1 and 8:14 claims that the apostles remained in Jerusalem. So the ones who claimed their first-hand witness of seeing Jesus alive after His crucifixion - these who would be regarded the most "dangerous" to the Jewish leaders - stayed in proximit of the greatest danger.
 - James the son of Zebedee:  He was put to death by Herod Agrippa I  shortly before the day of the Passover, in the year 44 or about 11 years after the death of Christ.  From Acts 12: 1-2.
+
+
+> Also see the video ["These 4 Facts about the Resurrection will Silence the Skeptics!"](https://youtu.be/lNucIBbToWE?si=B2NrQR_JqkXLxeZe)
