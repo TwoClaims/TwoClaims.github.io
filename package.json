@@ -2,7 +2,7 @@
   "name": "twoclaims",
   "type": "module",
   "version": "0.0.1",
-  "packageManager": "pnpm@11.13.0",
+  "packageManager": "pnpm@11.28.2",
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
