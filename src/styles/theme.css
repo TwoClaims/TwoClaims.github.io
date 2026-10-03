@@ -1,0 +1,190 @@
+/*
+ * Two Claims — site theme
+ *
+ * Concept: "first light". A quiet, night-blue dark mode and a warm parchment
+ * light mode, both lit by a single sunrise-amber accent (a nod to the empty
+ * tomb at dawn). Serif display type (Fraunces) for the big questions; a clean
+ * sans (Inter) for long reading.
+ */
+@import '@fontsource-variable/fraunces';
+@import '@fontsource-variable/inter';
+
+/* ---------- Tokens ---------- */
+:root {
+	--sl-font: 'Inter Variable', system-ui, sans-serif;
+	--tc-font-display: 'Fraunces Variable', Georgia, 'Times New Roman', serif;
+
+	/* Dark mode (Starlight default) — night sky */
+	--sl-color-white: hsl(40, 40%, 97%);
+	--sl-color-gray-1: hsl(40, 18%, 90%);
+	--sl-color-gray-2: hsl(220, 12%, 78%);
+	--sl-color-gray-3: hsl(220, 10%, 60%);
+	--sl-color-gray-4: hsl(220, 12%, 40%);
+	--sl-color-gray-5: hsl(222, 20%, 24%);
+	--sl-color-gray-6: hsl(222, 28%, 14%);
+	--sl-color-black: hsl(222, 32%, 9%);
+
+	--sl-color-accent-low: hsl(28, 45%, 18%);
+	--sl-color-accent: hsl(32, 88%, 58%);
+	--sl-color-accent-high: hsl(38, 95%, 80%);
+
+	--sl-color-bg-nav: hsl(222, 32%, 9%, 0.85);
+	--sl-color-bg-sidebar: var(--sl-color-black);
+
+	--tc-surface: hsl(222, 26%, 13%);
+	--tc-surface-raised: hsl(222, 24%, 16%);
+	--tc-border: hsl(222, 18%, 24%);
+	--tc-glow: hsla(32, 95%, 60%, 0.22);
+	--tc-glow-2: hsla(14, 80%, 55%, 0.12);
+	--tc-yes: hsl(145, 55%, 58%);
+	--tc-partial: hsl(42, 90%, 62%);
+	--tc-no: hsl(355, 70%, 66%);
+}
+
+:root[data-theme='light'] {
+	/* Light mode — parchment and ink */
+	--sl-color-white: hsl(222, 35%, 12%);
+	--sl-color-gray-1: hsl(222, 25%, 18%);
+	--sl-color-gray-2: hsl(222, 15%, 28%);
+	--sl-color-gray-3: hsl(30, 8%, 38%);
+	--sl-color-gray-4: hsl(35, 8%, 55%);
+	--sl-color-gray-5: hsl(38, 18%, 80%);
+	--sl-color-gray-6: hsl(40, 30%, 92%);
+	--sl-color-gray-7: hsl(40, 40%, 95%);
+	--sl-color-black: hsl(42, 45%, 97%);
+
+	--sl-color-accent-low: hsl(36, 85%, 88%);
+	--sl-color-accent: hsl(26, 80%, 44%);
+	--sl-color-accent-high: hsl(20, 75%, 28%);
+
+	--sl-color-bg-nav: hsla(42, 45%, 97%, 0.85);
+	--sl-color-bg-sidebar: var(--sl-color-black);
+
+	--tc-surface: hsl(40, 50%, 99%);
+	--tc-surface-raised: hsl(0, 0%, 100%);
+	--tc-border: hsl(38, 22%, 84%);
+	--tc-glow: hsla(34, 95%, 60%, 0.28);
+	--tc-glow-2: hsla(14, 85%, 60%, 0.12);
+	--tc-yes: hsl(145, 55%, 32%);
+	--tc-partial: hsl(36, 85%, 38%);
+	--tc-no: hsl(355, 65%, 45%);
+}
+
+/* ---------- Typography ---------- */
+body {
+	background: var(--sl-color-bg);
+	font-feature-settings: 'cv11', 'ss01';
+}
+
+.sl-markdown-content :is(h1, h2, h3, h4),
+h1#_top,
+.site-title,
+.tc-display {
+	font-family: var(--tc-font-display);
+	font-optical-sizing: auto;
+	letter-spacing: -0.01em;
+}
+
+h1#_top,
+.sl-markdown-content h2 {
+	font-weight: 600;
+}
+
+.sl-markdown-content h3,
+.sl-markdown-content h4 {
+	font-weight: 550;
+}
+
+.sl-markdown-content {
+	font-size: 1.0625rem;
+}
+
+.sl-markdown-content blockquote {
+	border-inline-start-color: var(--sl-color-accent);
+	font-family: var(--tc-font-display);
+	font-size: 1.15em;
+	font-style: italic;
+	color: var(--sl-color-gray-1);
+}
+
+/* A large pull-quote for the big questions */
+.sl-markdown-content .tc-question {
+	font-family: var(--tc-font-display);
+	font-size: clamp(1.75rem, 1rem + 3vw, 2.75rem);
+	line-height: 1.15;
+	font-weight: 600;
+	color: var(--sl-color-white);
+	text-align: center;
+	padding-block: 1.5rem;
+	text-wrap: balance;
+}
+.sl-markdown-content .tc-question::before,
+.sl-markdown-content .tc-question::after {
+	color: var(--sl-color-accent);
+}
+.sl-markdown-content .tc-question::before { content: '“'; }
+.sl-markdown-content .tc-question::after { content: '”'; }
+
+/* ---------- Chrome ---------- */
+header.header {
+	backdrop-filter: blur(10px);
+	-webkit-backdrop-filter: blur(10px);
+	border-bottom-color: var(--tc-border);
+}
+
+.site-title {
+	font-weight: 600;
+	font-size: 1.35rem;
+	color: var(--sl-color-white);
+}
+
+/* Sidebar: section labels in small caps, active link as an accent bar */
+.sidebar-content .group-label .large {
+	font-family: var(--sl-font);
+	font-size: var(--sl-text-xs);
+	text-transform: uppercase;
+	letter-spacing: 0.08em;
+	color: var(--sl-color-gray-3);
+}
+.sidebar-content a[aria-current='page'],
+.sidebar-content a[aria-current='page']:hover,
+.sidebar-content a[aria-current='page']:focus {
+	background: var(--sl-color-accent-low);
+	color: var(--sl-color-accent-high);
+	box-shadow: inset 3px 0 0 var(--sl-color-accent);
+	border-radius: 0 0.25rem 0.25rem 0;
+}
+
+/* Buttons */
+.sl-link-button.primary {
+	background: var(--sl-color-accent);
+	border-color: var(--sl-color-accent);
+	color: var(--sl-color-black);
+}
+:root[data-theme='light'] .sl-link-button.primary {
+	color: hsl(42, 45%, 98%);
+}
+
+/* Cards (Starlight <Card>) */
+.card {
+	background: var(--tc-surface);
+	border-color: var(--tc-border) !important;
+	border-radius: 0.75rem;
+}
+
+/* Splash (home) page: let the dawn glow sit behind the hero */
+html:not([data-has-sidebar]) main {
+	position: relative;
+	isolation: isolate;
+}
+html:not([data-has-sidebar]) main::before {
+	content: '';
+	position: absolute;
+	inset: 0 0 auto 0;
+	height: min(95vh, 60rem);
+	z-index: -1;
+	pointer-events: none;
+	background:
+		radial-gradient(60% 55% at 50% 100%, var(--tc-glow), transparent 70%),
+		radial-gradient(40% 35% at 80% 90%, var(--tc-glow-2), transparent 70%);
+}

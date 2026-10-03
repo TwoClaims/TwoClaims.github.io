@@ -1,0 +1,150 @@
+---
+/**
+ * Claim 2 overview: the lines of evidence, with history given pride of place.
+ */
+import { Icon } from '@astrojs/starlight/components';
+import Section from './Section.astro';
+
+const fields = [
+	{
+		title: 'Cosmology',
+		icon: 'star',
+		text: 'The universe had a beginning. Whatever begins to exist has a cause.',
+		href: '/evidence/#cosmology',
+	},
+	{
+		title: 'Fine-tuning',
+		icon: 'setting',
+		text: 'The constants of physics fall within ranges that make life possible.',
+		href: '/evidence/#fine-tuning',
+	},
+	{
+		title: 'Morality',
+		icon: 'approve-check',
+		text: 'We all live as though some things are truly right and truly wrong.',
+		href: '/evidence/#morality',
+	},
+	{
+		title: 'Mind',
+		icon: 'information',
+		text: 'Consciousness and reason are hard to explain as accidents of matter.',
+		href: '/evidence/#mind',
+	},
+] as const;
+---
+
+<Section
+	eyebrow="Claim 2 · The evidence"
+	title="The evidence is <em>there</em> to be examined."
+	lede="Several fields of study point the same way. But the most striking evidence is not abstract — it is historical, and it has a name."
+>
+	<div class="fields">
+		<a class="feature" href="/evidence/jesus/">
+			<p class="tag">The most striking evidence</p>
+			<h3 class="tc-display">History &amp; the person of Jesus</h3>
+			<p>
+				A real man, in a real place, at a known time — who claimed to speak for God, was publicly
+				executed, and whose followers insisted they saw Him alive again. That claim can be
+				investigated like any other historical event.
+			</p>
+			<span class="go">Examine the historical evidence <Icon name="right-arrow" /></span>
+		</a>
+		{
+			fields.map((f) => (
+				<a class="field" href={f.href}>
+					<Icon name={f.icon} size="1.4rem" class="icon" />
+					<h3 class="tc-display">{f.title}</h3>
+					<p>{f.text}</p>
+				</a>
+			))
+		}
+	</div>
+</Section>
+
+<style>
+	.fields {
+		display: grid;
+		gap: 1rem;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+	@media (min-width: 60rem) {
+		.fields {
+			grid-template-columns: 2fr 1fr 1fr;
+			grid-template-rows: auto auto;
+		}
+		.feature {
+			grid-row: span 2;
+		}
+	}
+	a {
+		text-decoration: none;
+		color: inherit;
+		border: 1px solid var(--tc-border);
+		border-radius: 1rem;
+		background: var(--tc-surface);
+		transition:
+			border-color 0.2s,
+			transform 0.2s;
+	}
+	a:hover {
+		border-color: var(--sl-color-accent);
+		transform: translateY(-2px);
+	}
+	.field {
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+		padding: 1.25rem 1.4rem;
+	}
+	.field :global(.icon) {
+		color: var(--sl-color-accent);
+	}
+	.field h3 {
+		font-size: var(--sl-text-xl);
+		color: var(--sl-color-white);
+	}
+	.field p {
+		font-size: var(--sl-text-sm);
+		color: var(--sl-color-gray-2);
+	}
+	.feature {
+		grid-column: 1 / -1;
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+		padding: clamp(1.75rem, 1.25rem + 2vw, 2.75rem);
+		background:
+			radial-gradient(120% 90% at 100% 100%, var(--tc-glow), transparent 60%),
+			var(--tc-surface-raised);
+		border-color: color-mix(in srgb, var(--sl-color-accent) 45%, var(--tc-border));
+	}
+	@media (min-width: 60rem) {
+		.feature {
+			grid-column: auto;
+		}
+	}
+	.tag {
+		font-size: var(--sl-text-xs);
+		letter-spacing: 0.14em;
+		text-transform: uppercase;
+		font-weight: 600;
+		color: var(--sl-color-accent);
+	}
+	.feature h3 {
+		font-size: clamp(1.75rem, 1.3rem + 1.5vw, 2.4rem);
+		line-height: 1.1;
+		color: var(--sl-color-white);
+	}
+	.feature p:not(.tag) {
+		color: var(--sl-color-gray-2);
+		font-size: var(--sl-text-lg);
+		flex-grow: 1;
+	}
+	.go {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.4rem;
+		font-weight: 600;
+		color: var(--sl-color-accent);
+	}
+</style>

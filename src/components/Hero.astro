@@ -1,0 +1,112 @@
+---
+/**
+ * Replaces Starlight's default Hero. Centered, typographic, no image —
+ * the question itself is the visual. Supports an optional `eyebrow`
+ * frontmatter field (see content.config.ts).
+ */
+import { LinkButton } from '@astrojs/starlight/components';
+
+const PAGE_TITLE_ID = '_top'; // matches Starlight's internal constant
+const { data } = Astro.locals.starlightRoute.entry;
+const { title = data.title, tagline, actions = [] } = data.hero || {};
+const eyebrow = (data as { eyebrow?: string }).eyebrow;
+---
+
+<div class="tc-hero not-content">
+	{eyebrow && <p class="eyebrow">{eyebrow}</p>}
+	<h1 id={PAGE_TITLE_ID} data-page-title class="tc-display" set:html={title} />
+	{tagline && <p class="tagline" set:html={tagline} />}
+	{
+		actions.length > 0 && (
+			<div class="actions">
+				{actions.map(({ attrs: { class: className, ...attrs } = {}, icon, link: href, text, variant }) => (
+					<LinkButton {href} {variant} icon={icon?.name} class:list={[className]} {...attrs}>
+						{text}
+					</LinkButton>
+				))}
+			</div>
+		)
+	}
+	<a class="scroll-cue" href="#the-two-claims" aria-label="Read the two claims">
+		<span></span>
+	</a>
+</div>
+
+<style>
+	.tc-hero {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		text-align: center;
+		gap: 1.5rem;
+		min-height: calc(92vh - var(--sl-nav-height));
+		justify-content: center;
+		padding-block: 3rem 2rem;
+	}
+	.eyebrow {
+		font-size: var(--sl-text-sm);
+		letter-spacing: 0.18em;
+		text-transform: uppercase;
+		color: var(--sl-color-accent);
+		font-weight: 600;
+	}
+	h1 {
+		font-size: clamp(3rem, 1.5rem + 7vw, 7rem);
+		line-height: 1;
+		font-weight: 600;
+		color: var(--sl-color-white);
+		text-wrap: balance;
+		max-width: 14ch;
+	}
+	h1 :global(em) {
+		font-style: italic;
+		color: var(--sl-color-accent);
+	}
+	.tagline {
+		font-size: clamp(1.1rem, 0.9rem + 0.8vw, 1.45rem);
+		line-height: 1.5;
+		color: var(--sl-color-gray-2);
+		max-width: 36rem;
+		text-wrap: pretty;
+	}
+	.actions {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 1rem 1.5rem;
+		justify-content: center;
+		margin-top: 0.5rem;
+	}
+	.scroll-cue {
+		margin-top: auto;
+		padding-top: 2rem;
+		color: var(--sl-color-gray-3);
+	}
+	.scroll-cue span {
+		display: block;
+		width: 1.4rem;
+		height: 2.2rem;
+		border: 2px solid currentColor;
+		border-radius: 1rem;
+		position: relative;
+	}
+	.scroll-cue span::after {
+		content: '';
+		position: absolute;
+		left: 50%;
+		top: 0.4rem;
+		width: 3px;
+		height: 0.45rem;
+		margin-left: -1.5px;
+		border-radius: 2px;
+		background: var(--sl-color-accent);
+		animation: cue 1.8s ease-in-out infinite;
+	}
+	@keyframes cue {
+		0% { opacity: 0; transform: translateY(0); }
+		30% { opacity: 1; }
+		100% { opacity: 0; transform: translateY(0.7rem); }
+	}
+	@media (prefers-reduced-motion: reduce) {
+		.scroll-cue span::after { animation: none; }
+	}
+</style>

@@ -1,0 +1,169 @@
+---
+/**
+ * Evidence-vs-explanation matrix. "The best explanation will account for all
+ * the evidence." Each cell: y = explains, p = partly / strained, n = does not
+ * explain, ? = offers no explanation.
+ */
+type Mark = 'y' | 'p' | 'n' | '?';
+
+const facts = [
+	'Death',
+	'Empty tomb',
+	'Paul',
+	'James',
+	'Disciples',
+	'Other witnesses',
+	'Boldness',
+	'Growth',
+];
+
+// Order of marks follows `facts` above.
+const theories: { name: string; marks: Mark[] }[] = [
+	{ name: 'Resurrection', marks: ['y', 'y', 'y', 'y', 'y', 'y', 'y', 'y'] },
+	{ name: 'Swoon', marks: ['n', 'p', 'n', 'n', 'n', 'n', 'n', 'n'] },
+	{ name: 'Conspiracy', marks: ['y', 'y', 'n', 'n', 'n', 'n', 'n', 'p'] },
+	{ name: 'Hallucination', marks: ['y', 'n', 'n', 'n', 'p', 'n', 'p', 'p'] },
+	{ name: 'Legend', marks: ['y', 'n', 'n', 'n', 'n', 'n', 'n', 'p'] },
+	{ name: 'Wrong tomb', marks: ['y', 'y', 'n', 'n', 'n', 'n', 'n', 'n'] },
+	{ name: 'Unknown', marks: ['?', '?', '?', '?', '?', '?', '?', '?'] },
+];
+
+const label: Record<Mark, string> = {
+	y: 'Explains',
+	p: 'Partly / strained',
+	n: 'Does not explain',
+	'?': 'No explanation offered',
+};
+const glyph: Record<Mark, string> = { y: '✓', p: '~', n: '✕', '?': '?' };
+---
+
+<figure class="matrix not-content">
+	<div class="scroll" tabindex="0" role="region" aria-label="Explanations compared against the evidence">
+		<table>
+			<thead>
+				<tr>
+					<th scope="col">Explanation</th>
+					{facts.map((f) => <th scope="col"><span>{f}</span></th>)}
+					<th scope="col">Score</th>
+				</tr>
+			</thead>
+			<tbody>
+				{
+					theories.map((t) => {
+						const score = t.marks.filter((m) => m === 'y').length;
+						return (
+							<tr class:list={{ best: score === facts.length }}>
+								<th scope="row">{t.name}</th>
+								{t.marks.map((m) => (
+									<td class={`m-${m === '?' ? 'u' : m}`} title={label[m]}>
+										<span aria-hidden="true">{glyph[m]}</span>
+										<span class="sr-only">{label[m]}</span>
+									</td>
+								))}
+								<td class="score">
+									{score}/{facts.length}
+								</td>
+							</tr>
+						);
+					})
+				}
+			</tbody>
+		</table>
+	</div>
+	<figcaption>
+		<span><b class="m-y">✓</b> explains</span>
+		<span><b class="m-p">~</b> partly or with strain</span>
+		<span><b class="m-n">✕</b> does not explain</span>
+		<span><b class="m-u">?</b> offers no explanation</span>
+		<em>The best explanation will account for all the evidence.</em>
+	</figcaption>
+</figure>
+
+<style>
+	.matrix {
+		margin-block: 2rem;
+	}
+	.scroll {
+		overflow-x: auto;
+		border: 1px solid var(--tc-border);
+		border-radius: 0.75rem;
+		background: var(--tc-surface);
+	}
+	table {
+		width: 100%;
+		border-collapse: collapse;
+		font-size: var(--sl-text-sm);
+	}
+	th,
+	td {
+		padding: 0.6rem 0.3rem;
+		text-align: center;
+		border-bottom: 1px solid var(--tc-border);
+	}
+	thead th {
+		font-weight: 600;
+		color: var(--sl-color-gray-2);
+		vertical-align: bottom;
+		font-size: var(--sl-text-2xs);
+		line-height: 1.2;
+		hyphens: auto;
+	}
+	thead th:first-child,
+	tbody th {
+		text-align: start;
+		padding-inline-start: 1rem;
+		white-space: nowrap;
+	}
+	tbody th {
+		font-family: var(--tc-font-display);
+		font-size: var(--sl-text-base);
+		font-weight: 550;
+		color: var(--sl-color-white);
+	}
+	tbody tr:last-child > * {
+		border-bottom: 0;
+	}
+	tr.best {
+		background: color-mix(in srgb, var(--sl-color-accent) 12%, transparent);
+	}
+	tr.best th {
+		color: var(--sl-color-accent);
+	}
+	td {
+		font-weight: 700;
+		font-size: var(--sl-text-base);
+	}
+	.m-y { color: var(--tc-yes); }
+	.m-p { color: var(--tc-partial); }
+	.m-n { color: var(--tc-no); }
+	.m-u { color: var(--sl-color-gray-4); }
+	.score {
+		font-variant-numeric: tabular-nums;
+		color: var(--sl-color-gray-2);
+		font-weight: 600;
+		font-size: var(--sl-text-sm);
+		padding-inline-end: 1rem;
+	}
+	figcaption {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.5rem 1.25rem;
+		margin-top: 0.75rem;
+		font-size: var(--sl-text-xs);
+		color: var(--sl-color-gray-3);
+	}
+	figcaption em {
+		flex-basis: 100%;
+		font-family: var(--tc-font-display);
+		font-size: var(--sl-text-base);
+		color: var(--sl-color-gray-2);
+	}
+	.sr-only {
+		position: absolute;
+		width: 1px;
+		height: 1px;
+		overflow: hidden;
+		clip: rect(0 0 0 0);
+		white-space: nowrap;
+	}
+</style>

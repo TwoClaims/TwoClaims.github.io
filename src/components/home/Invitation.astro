@@ -1,0 +1,60 @@
+---
+/** Closing call to action. */
+import { LinkButton } from '@astrojs/starlight/components';
+---
+
+<section class="invite not-content">
+	<p class="eyebrow">An invitation</p>
+	<h2 class="tc-display">Ask the question.<br />Look for the answer.<br /><em>Examine the evidence.</em></h2>
+	<p class="lede">
+		Every answer raises new questions — and you shouldn’t stop until you are satisfied. How seriously
+		you take the question will shape how seriously you examine the evidence.
+	</p>
+	<div class="actions">
+		<LinkButton href="/claims/the-question/" icon="right-arrow">Start with Claim 1</LinkButton>
+		<LinkButton href="/respond/what-now/" variant="secondary">What would this mean for me?</LinkButton>
+	</div>
+</section>
+
+<style>
+	.invite {
+		margin-block: 2rem 1rem;
+		padding: clamp(2.5rem, 2rem + 5vw, 5.5rem) clamp(1.5rem, 1rem + 4vw, 4rem);
+		text-align: center;
+		border-radius: 1.5rem;
+		border: 1px solid var(--tc-border);
+		background:
+			radial-gradient(70% 90% at 50% 120%, var(--tc-glow), transparent 70%),
+			var(--tc-surface);
+	}
+	.eyebrow {
+		font-size: var(--sl-text-xs);
+		letter-spacing: 0.18em;
+		text-transform: uppercase;
+		color: var(--sl-color-accent);
+		font-weight: 600;
+	}
+	h2 {
+		margin-top: 1rem;
+		font-size: clamp(2rem, 1.25rem + 3vw, 3.4rem);
+		line-height: 1.1;
+		font-weight: 600;
+		color: var(--sl-color-white);
+	}
+	h2 em {
+		color: var(--sl-color-accent);
+	}
+	.lede {
+		margin: 1.25rem auto 0;
+		max-width: 36rem;
+		color: var(--sl-color-gray-2);
+		font-size: var(--sl-text-lg);
+	}
+	.actions {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		gap: 1rem;
+		margin-top: 2rem;
+	}
+</style>

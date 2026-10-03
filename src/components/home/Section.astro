@@ -1,0 +1,59 @@
+---
+/** A homepage section with an eyebrow, a display heading, and optional lede. */
+interface Props {
+	id?: string;
+	eyebrow?: string;
+	title: string;
+	lede?: string;
+	align?: 'center' | 'start';
+}
+const { id, eyebrow, title, lede, align = 'center' } = Astro.props;
+---
+
+<section class:list={['tc-section', 'not-content', align]} id={id}>
+	<header>
+		{eyebrow && <p class="eyebrow">{eyebrow}</p>}
+		<h2 class="tc-display" set:html={title} />
+		{lede && <p class="lede" set:html={lede} />}
+	</header>
+	<slot />
+</section>
+
+<style>
+	.tc-section {
+		padding-block: clamp(3rem, 2rem + 6vw, 7rem);
+		border-top: 1px solid var(--tc-border);
+	}
+	header {
+		max-width: 44rem;
+		margin-bottom: clamp(2rem, 1.5rem + 2vw, 3.5rem);
+	}
+	.center header {
+		margin-inline: auto;
+		text-align: center;
+	}
+	.eyebrow {
+		font-size: var(--sl-text-xs);
+		letter-spacing: 0.18em;
+		text-transform: uppercase;
+		color: var(--sl-color-accent);
+		font-weight: 600;
+		margin-bottom: 0.75rem;
+	}
+	h2 {
+		font-size: clamp(2rem, 1.25rem + 3vw, 3.25rem);
+		line-height: 1.1;
+		font-weight: 600;
+		color: var(--sl-color-white);
+		text-wrap: balance;
+	}
+	h2 :global(em) {
+		color: var(--sl-color-accent);
+	}
+	.lede {
+		margin-top: 1rem;
+		font-size: var(--sl-text-lg);
+		color: var(--sl-color-gray-2);
+		text-wrap: pretty;
+	}
+</style>

@@ -1,0 +1,74 @@
+---
+/**
+ * A card that sends the reader to an outside resource. The site's job is to
+ * raise the question and point well — this is how it points.
+ *
+ * <Resource href="https://…" title="…" source="…" kind="Video">Why it's worth your time.</Resource>
+ */
+import { Icon } from '@astrojs/starlight/components';
+
+interface Props {
+	href: string;
+	title: string;
+	source: string;
+	kind?: 'Article' | 'Video' | 'Book' | 'Website' | 'Podcast' | 'Course';
+}
+const { href, title, source, kind = 'Website' } = Astro.props;
+---
+
+<a class="resource not-content" href={href} target="_blank" rel="noopener">
+	<span class="meta">
+		<span class="kind">{kind}</span>
+		<span class="source">{source}</span>
+	</span>
+	<span class="title tc-display">{title} <Icon name="external" size="0.9em" class="ext" /></span>
+	<span class="why"><slot /></span>
+</a>
+
+<style>
+	.resource {
+		display: flex;
+		flex-direction: column;
+		gap: 0.35rem;
+		padding: 1rem 1.25rem;
+		margin-top: 0.75rem;
+		border: 1px solid var(--tc-border);
+		border-inline-start: 3px solid var(--sl-color-accent);
+		border-radius: 0.25rem 0.75rem 0.75rem 0.25rem;
+		background: var(--tc-surface);
+		text-decoration: none;
+		color: inherit;
+		transition: border-color 0.2s;
+	}
+	.resource:hover {
+		border-color: var(--sl-color-accent);
+	}
+	.meta {
+		display: flex;
+		gap: 0.75rem;
+		font-size: var(--sl-text-xs);
+		text-transform: uppercase;
+		letter-spacing: 0.1em;
+		font-weight: 600;
+	}
+	.kind {
+		color: var(--sl-color-accent);
+	}
+	.source {
+		color: var(--sl-color-gray-3);
+	}
+	.title {
+		font-size: var(--sl-text-lg);
+		font-weight: 550;
+		color: var(--sl-color-white);
+	}
+	.title :global(.ext) {
+		display: inline;
+		vertical-align: -0.1em;
+		color: var(--sl-color-gray-3);
+	}
+	.why {
+		font-size: var(--sl-text-sm);
+		color: var(--sl-color-gray-2);
+	}
+</style>

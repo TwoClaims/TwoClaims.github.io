@@ -1,0 +1,101 @@
+---
+/**
+ * "Why it's the most important question": one central question, with the
+ * other big questions of life arranged around it — each one depends on it.
+ */
+import Section from './Section.astro';
+
+const questions = [
+	{ q: 'Why am I here?', area: 'Purpose' },
+	{ q: 'What makes something right or wrong?', area: 'Morality' },
+	{ q: 'What is a human life worth?', area: 'Dignity' },
+	{ q: 'What happens when I die?', area: 'Death' },
+	{ q: 'Is there any real hope?', area: 'Hope' },
+	{ q: 'Why is there anything at all?', area: 'Origins' },
+];
+---
+
+<Section
+	eyebrow="Claim 1 · Why it matters"
+	title="Every other question <em>leans on</em> this one."
+	lede="Answer “Is there a God?” with a yes or a no, and you have already begun answering everything below — whether you meant to or not."
+>
+	<div class="ripple">
+		<div class="core">
+			<span class="tc-display">Is there a God?</span>
+		</div>
+		<ul class="orbit">
+			{
+				questions.map(({ q, area }) => (
+					<li>
+						<span class="area">{area}</span>
+						<span class="q">{q}</span>
+					</li>
+				))
+			}
+		</ul>
+	</div>
+</Section>
+
+<style>
+	.ripple {
+		display: grid;
+		gap: 1.25rem;
+		justify-items: center;
+	}
+	.core {
+		display: grid;
+		place-items: center;
+		width: clamp(11rem, 8rem + 12vw, 15rem);
+		aspect-ratio: 1;
+		border-radius: 50%;
+		text-align: center;
+		padding: 1.5rem;
+		background: radial-gradient(circle at 50% 40%, var(--sl-color-accent-low), var(--tc-surface) 70%);
+		border: 1px solid var(--sl-color-accent);
+		box-shadow:
+			0 0 0 0.9rem color-mix(in srgb, var(--sl-color-accent) 10%, transparent),
+			0 0 0 1.8rem color-mix(in srgb, var(--sl-color-accent) 5%, transparent);
+		margin-block: 1.8rem;
+	}
+	.core span {
+		font-size: clamp(1.4rem, 1.1rem + 1vw, 1.85rem);
+		font-weight: 600;
+		line-height: 1.1;
+		color: var(--sl-color-white);
+	}
+	.orbit {
+		list-style: none;
+		padding: 0;
+		width: 100%;
+		display: grid;
+		gap: 1rem;
+		grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr));
+	}
+	@media (min-width: 60rem) {
+		.orbit {
+			grid-template-columns: repeat(3, 1fr);
+		}
+	}
+	.orbit li {
+		display: flex;
+		flex-direction: column;
+		gap: 0.25rem;
+		padding: 1rem 1.25rem;
+		border-inline-start: 3px solid var(--sl-color-accent);
+		background: var(--tc-surface);
+		border-radius: 0 0.5rem 0.5rem 0;
+	}
+	.area {
+		font-size: var(--sl-text-xs);
+		letter-spacing: 0.12em;
+		text-transform: uppercase;
+		color: var(--sl-color-gray-3);
+		font-weight: 600;
+	}
+	.q {
+		font-family: var(--tc-font-display);
+		font-size: var(--sl-text-lg);
+		color: var(--sl-color-white);
+	}
+</style>

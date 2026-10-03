@@ -1,0 +1,123 @@
+---
+/** The two claims, side by side, as the centrepiece of the homepage. */
+import { Icon } from '@astrojs/starlight/components';
+import Section from './Section.astro';
+
+const claims = [
+	{
+		n: '1',
+		label: 'The Question',
+		claim: 'The most important question for every human being is, <em>“Is there a God?”</em>',
+		why: 'A “yes” or a “no” reshapes the answer to every other important question in life — meaning, morality, identity, death, and hope.',
+		href: '/claims/the-question/',
+		cta: 'Why this question?',
+	},
+	{
+		n: '2',
+		label: 'The Answer',
+		claim: 'There is <em>more than sufficient evidence</em> to answer that question.',
+		why: 'Evidence comes from many disciplines, but the most striking is historical — and it centres on one figure: Jesus of Nazareth.',
+		href: '/claims/the-answer/',
+		cta: 'Is there really enough evidence?',
+	},
+];
+---
+
+<Section
+	id="the-two-claims"
+	eyebrow="The premise"
+	title="Two claims. <em>Examine them.</em>"
+	lede="These are put forward as statements of fact — so test them. You would do well to examine any claim brought before you."
+>
+	<ol class="claims">
+		{
+			claims.map((c) => (
+				<li class="claim">
+					<span class="numeral tc-display" aria-hidden="true">{c.n}</span>
+					<p class="label">
+						Claim {c.n} · {c.label}
+					</p>
+					<p class="statement tc-display" set:html={c.claim} />
+					<p class="why">{c.why}</p>
+					<a class="more" href={c.href}>
+						{c.cta} <Icon name="right-arrow" size="1.1em" />
+					</a>
+				</li>
+			))
+		}
+	</ol>
+</Section>
+
+<style>
+	.claims {
+		list-style: none;
+		padding: 0;
+		display: grid;
+		gap: 1.5rem;
+		grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr));
+		counter-reset: none;
+	}
+	.claim {
+		position: relative;
+		overflow: hidden;
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+		padding: clamp(1.75rem, 1.25rem + 2vw, 2.75rem);
+		background: var(--tc-surface);
+		border: 1px solid var(--tc-border);
+		border-radius: 1rem;
+		box-shadow: var(--sl-shadow-md);
+	}
+	.numeral {
+		position: absolute;
+		inset-block-start: -0.18em;
+		inset-inline-end: 0.05em;
+		font-size: 11rem;
+		line-height: 1;
+		font-weight: 700;
+		color: var(--sl-color-accent);
+		opacity: 0.12;
+		pointer-events: none;
+	}
+	.label {
+		font-size: var(--sl-text-xs);
+		letter-spacing: 0.14em;
+		text-transform: uppercase;
+		font-weight: 600;
+		color: var(--sl-color-accent);
+	}
+	.statement {
+		font-size: clamp(1.5rem, 1.15rem + 1.2vw, 2rem);
+		line-height: 1.2;
+		font-weight: 550;
+		color: var(--sl-color-white);
+		text-wrap: balance;
+	}
+	.statement :global(em) {
+		font-style: italic;
+		color: var(--sl-color-accent-high);
+	}
+	:root[data-theme='light'] .statement :global(em) {
+		color: var(--sl-color-accent);
+	}
+	.why {
+		color: var(--sl-color-gray-2);
+		flex-grow: 1;
+	}
+	.more {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.4rem;
+		font-weight: 600;
+		color: var(--sl-color-accent-high);
+		text-decoration: none;
+	}
+	:root[data-theme='light'] .more {
+		color: var(--sl-color-accent);
+	}
+	.more:hover {
+		text-decoration: underline;
+		text-underline-offset: 0.2em;
+	}
+</style>

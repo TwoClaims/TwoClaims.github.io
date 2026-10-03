@@ -1,0 +1,78 @@
+# Astro Starlight site
+#
+# Normalize all text files to LF, in the repo and in the working tree.
+# Astro, Vite, Prettier, and the GitHub Actions (Linux) build all expect LF,
+# so this keeps Windows checkouts from introducing CRLF noise in diffs.
+*                 text=auto eol=lf
+
+# ---------- Source ----------
+*.astro           text diff=html
+*.mdx             text diff=markdown
+*.md              text diff=markdown
+*.html            text diff=html
+*.css             text diff=css
+*.scss            text diff=css
+*.js              text
+*.mjs             text
+*.cjs             text
+*.ts              text
+*.mts             text
+*.cts             text
+*.jsx             text
+*.tsx             text
+
+# ---------- Config & data ----------
+*.json            text
+*.jsonc           text
+*.yaml            text
+*.yml             text
+*.toml            text
+*.xml             text
+*.csv             text
+*.txt             text
+.editorconfig     text
+.gitignore        text
+.gitattributes    text
+.npmrc            text
+.env*             text
+
+# ---------- Scripts ----------
+*.sh              text eol=lf
+*.ps1             text eol=crlf
+*.cmd             text eol=crlf
+*.bat             text eol=crlf
+
+# ---------- Images ----------
+# SVG is text (logos and icons are hand-edited here).
+*.svg             text
+*.png             binary
+*.jpg             binary
+*.jpeg            binary
+*.gif             binary
+*.webp            binary
+*.avif            binary
+*.ico             binary
+
+# ---------- Fonts ----------
+*.woff            binary
+*.woff2           binary
+*.ttf             binary
+*.otf             binary
+*.eot             binary
+
+# ---------- Media & documents ----------
+*.mp4             binary
+*.webm            binary
+*.mp3             binary
+*.ogg             binary
+*.pdf             binary
+
+# ---------- Generated files ----------
+# Collapse the lockfile in GitHub diffs and exclude it from language stats.
+pnpm-lock.yaml    text eol=lf linguist-generated=true -diff
+package-lock.json text eol=lf linguist-generated=true -diff
+yarn.lock         text eol=lf linguist-generated=true -diff
+
+# ---------- GitHub language stats ----------
+# Count prose content as part of the project, not as "documentation".
+src/content/**    linguist-documentation=false linguist-detectable=true
