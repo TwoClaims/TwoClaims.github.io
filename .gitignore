@@ -1,1 +1,5 @@
-[Nn]o[Tt]rack/
+[Nn]o[Tt]rack
+[Rr]n[Dd]
+_queue_
+node_modules
+.claude

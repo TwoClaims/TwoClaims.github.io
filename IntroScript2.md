@@ -10,7 +10,7 @@ This is not to say that other worldviews are entirely wrong. Every worldview get
 
 When I say the "Christian worldview", I have to clarify that I am referring to the worldview put forth in the Bible. I'm not talking about "Church traditions" or about any particular denomination. I'm talking about the book (or *collection* of books) that we refer to as the Bible.
 
-In short: Christianity is thouroughly reasonable.
+In short: Christianity is thoroughly reasonable.
 
 But before we get into what this worldview involves, we should step back and address the most important question for every person on the planet:
 
