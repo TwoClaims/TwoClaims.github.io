@@ -47,6 +47,7 @@ export default defineConfig({
 					label: 'Go deeper',
 					items: [
 						{ label: 'Where to start', slug: 'resources' },
+						{ label: 'The Chosen', slug: 'resources/the-chosen' },
 						{ label: 'Resource library', slug: 'resources/library' },
 					],
 				},

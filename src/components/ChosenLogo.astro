@@ -1,0 +1,42 @@
+---
+/**
+ * The Chosen's stacked wordmark, shown the way their brand guide asks
+ * (https://thechosen.lingoapp.com/k/Brand-Guide-R7LvGn):
+ *   - the official artwork only: never retyped, recoloured, stretched,
+ *     rotated, outlined, or given shadows or gradients
+ *   - Cerulean on white in light mode, Reverse on their "Mine Shaft" grey in
+ *     dark mode, so it never sits on a competing background
+ *   - clear space on every side at least the height of the "C"
+ *     (about half the logo's height)
+ */
+import { Image } from 'astro:assets';
+import cerulean from '../assets/the-chosen/CHSN_Stacked-Logo_Cerulean_Web.png';
+import reverse from '../assets/the-chosen/CHSN_Stacked-Logo_Reverse_Web.png';
+
+const width = 280;
+---
+
+<div class="chosen-logo not-content">
+	<Image src={cerulean} width={width} densities={[1, 2]} alt="The Chosen" class="dark:sl-hidden" />
+	<Image src={reverse} width={width} densities={[1, 2]} alt="The Chosen" class="light:sl-hidden" />
+</div>
+
+<style>
+	.chosen-logo {
+		/* 280px wide → ~90px tall; the "C" is ~half that, so 3rem of clear space is ample. */
+		display: flex;
+		justify-content: center;
+		padding: 3rem;
+		border-radius: 0.75rem;
+		background: #ffffff;
+		border: 1px solid var(--tc-border);
+	}
+	:global([data-theme='dark']) .chosen-logo {
+		background: #262626;
+	}
+	.chosen-logo img {
+		width: 280px;
+		max-width: 100%;
+		height: auto;
+	}
+</style>
