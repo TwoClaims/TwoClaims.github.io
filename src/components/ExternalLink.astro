@@ -1,0 +1,27 @@
+---
+/**
+ * An inline link to an outside site. Opens in a new tab and shows the same
+ * "external" icon as the resource cards.
+ *
+ * <ExternalLink href="https://…">The Chosen</ExternalLink>
+ */
+import { Icon } from '@astrojs/starlight/components';
+
+interface Props {
+	href: string;
+}
+const { href } = Astro.props;
+---
+
+<a class="external-link" href={href} target="_blank" rel="noopener"><slot /><Icon name="external" size="0.85em" class="ext" /><span class="sr-only"> (opens in a new tab)</span></a>
+
+<style>
+	.external-link {
+		white-space: nowrap;
+	}
+	.external-link :global(.ext) {
+		display: inline;
+		margin-inline-start: 0.2em;
+		vertical-align: -0.1em;
+	}
+</style>
