@@ -1,0 +1,128 @@
+# Every outside resource the site links to lives here — enter each one once.
+#
+#   id        unique slug (used by <ResourceList ids={[...]} />)
+#   title     what the reader will click
+#   url       full link
+#   source    person or organization behind it
+#   kind      Website | Video | Book | Article | Podcast | Course
+#   topics    one or more of: history, philosophy, objections, bible, gospel
+#   featured  true = shown on "Where to start" (keep that list short)
+#   note      one sentence on why it's worth the reader's time
+
+- id: habermas
+  title: Minimal Facts and the Resurrection
+  url: https://www.garyhabermas.com/
+  source: Gary Habermas
+  kind: Website
+  topics: [history]
+  featured: true
+  note: Decades of research into what scholars, including skeptics, agree about the resurrection.
+
+- id: cold-case
+  title: Cold-Case Christianity
+  url: https://coldcasechristianity.com/
+  source: J. Warner Wallace
+  kind: Website
+  topics: [history]
+  featured: true
+  note: A homicide detective applies forensic reasoning to the Gospels as eyewitness testimony.
+
+- id: risen-jesus
+  title: Risen Jesus
+  url: https://www.risenjesus.com/
+  source: Michael Licona
+  kind: Website
+  topics: [history]
+  note: A historian's careful case for the resurrection, with debates and articles.
+
+- id: case-for-christ
+  title: The Case for Christ
+  url: https://leestrobel.com/
+  source: Lee Strobel
+  kind: Book
+  topics: [history]
+  note: A former atheist journalist interviews scholars to test the evidence for Jesus.
+
+- id: reasonable-faith
+  title: Reasonable Faith
+  url: https://www.reasonablefaith.org/
+  source: William Lane Craig
+  kind: Website
+  topics: [philosophy]
+  featured: true
+  note: Rigorous arguments for God's existence, including the Kalam cosmological argument, with popular-level videos.
+
+- id: inspiring-philosophy
+  title: Inspiring Philosophy
+  url: https://www.youtube.com/@InspiringPhilosophy
+  source: Michael Jones
+  kind: Video
+  topics: [philosophy, history]
+  note: Clear, well-sourced videos on philosophy, science, and the historical Jesus.
+
+- id: reasons-to-believe
+  title: Reasons to Believe
+  url: https://reasons.org/
+  source: Hugh Ross and team
+  kind: Website
+  topics: [philosophy]
+  note: Scientists exploring cosmology, fine-tuning, and the origin of life.
+
+- id: str
+  title: Stand to Reason
+  url: https://www.str.org/
+  source: Greg Koukl and team
+  kind: Website
+  topics: [objections]
+  featured: true
+  note: Thoughtful answers to hard questions, and training for gracious conversations.
+
+- id: cross-examined
+  title: CrossExamined
+  url: https://crossexamined.org/
+  source: Frank Turek
+  kind: Website
+  topics: [objections, philosophy]
+  note: Campus Q&A sessions and articles that take tough questions head-on.
+
+- id: got-questions
+  title: Got Questions
+  url: https://www.gotquestions.org/
+  source: Got Questions Ministries
+  kind: Website
+  topics: [objections, bible]
+  note: Short, searchable answers to thousands of questions about the Bible and Christianity.
+
+- id: bible-project
+  title: BibleProject
+  url: https://bibleproject.com/
+  source: BibleProject
+  kind: Video
+  topics: [bible]
+  featured: true
+  note: Beautifully animated overviews of every book of the Bible and its big themes.
+
+- id: bible-gateway-john
+  title: Read the Gospel of John
+  url: https://www.biblegateway.com/passage/?search=John+1&version=ESV
+  source: Bible Gateway
+  kind: Article
+  topics: [bible, gospel]
+  featured: true
+  note: The best place to meet Jesus for yourself. Start at chapter 1.
+
+- id: mere-christianity
+  title: Mere Christianity
+  url: https://www.cslewis.com/us/books/mere-christianity/
+  source: C. S. Lewis
+  kind: Book
+  topics: [philosophy, gospel]
+  note: A former atheist's classic case for the Christian faith, starting from the moral law.
+
+- id: living-waters
+  title: Living Waters
+  url: https://livingwaters.com/
+  source: Ray Comfort
+  kind: Video
+  topics: [gospel]
+  note: Street conversations that make the gospel plain, along with resources for sharing it.

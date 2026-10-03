@@ -3,7 +3,7 @@ title: Lines of evidence
 description: The fields of study that bear on the question “Is there a God?”
 ---
 
-import Resource from '../../../components/Resource.astro';
+import ResourceList from '../../../components/ResourceList.astro';
 import { LinkCard } from '@astrojs/starlight/components';
 
 Each line of evidence below is summarised in a sentence or two, with a pointer to people who have done the deep work. None of them stands alone; together they form a cumulative case.
@@ -12,9 +12,7 @@ Each line of evidence below is summarised in a sentence or two, with a pointer t
 
 The universe had a beginning. Whatever begins to exist has a cause. What caused the universe?
 
-<Resource href="https://www.reasonablefaith.org/" source="Reasonable Faith" title="The Kalam Cosmological Argument">
-William Lane Craig’s accessible introductions and videos.
-</Resource>
+<ResourceList ids={['reasonable-faith']} />
 
 ## Fine-tuning
 

@@ -188,3 +188,8 @@ html:not([data-has-sidebar]) main::before {
 		radial-gradient(60% 55% at 50% 100%, var(--tc-glow), transparent 70%),
 		radial-gradient(40% 35% at 80% 90%, var(--tc-glow-2), transparent 70%);
 }
+
+/* Let the `hidden` attribute win over component display rules (resource filter) */
+.sl-markdown-content [hidden] {
+	display: none !important;
+}

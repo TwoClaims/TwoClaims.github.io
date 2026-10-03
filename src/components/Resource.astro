@@ -6,17 +6,18 @@
  * <Resource href="https://…" title="…" source="…" kind="Video">Why it's worth your time.</Resource>
  */
 import { Icon } from '@astrojs/starlight/components';
+import type { Kind } from '../data/topics';
 
 interface Props {
 	href: string;
 	title: string;
 	source: string;
-	kind?: 'Article' | 'Video' | 'Book' | 'Website' | 'Podcast' | 'Course';
+	kind?: Kind;
 }
 const { href, title, source, kind = 'Website' } = Astro.props;
 ---
 
-<a class="resource not-content" href={href} target="_blank" rel="noopener">
+<a class="resource not-content" href={href} target="_blank" rel="noopener" data-kind={kind}>
 	<span class="meta">
 		<span class="kind">{kind}</span>
 		<span class="source">{source}</span>

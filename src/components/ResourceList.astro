@@ -1,0 +1,41 @@
+---
+/**
+ * Renders resources from src/data/resources.yaml. Pick them by:
+ *   <ResourceList topic="history" />      every resource tagged with a topic
+ *   <ResourceList featured />             the "Where to start" picks
+ *   <ResourceList ids={['habermas']} />   specific resources, in the given order
+ */
+import { getCollection } from 'astro:content';
+import Resource from './Resource.astro';
+import { topics, type Topic } from '../data/topics';
+
+interface Props {
+	topic?: Topic;
+	featured?: boolean;
+	ids?: string[];
+}
+const { topic, featured, ids } = Astro.props;
+
+const all = await getCollection('resources');
+// Follow the site's argument: history first, the gospel last (see topics.ts).
+const topicOrder = Object.keys(topics);
+const rank = (r: (typeof all)[number]) => topicOrder.indexOf(r.data.topics[0]);
+let items = all
+	.filter(({ data }) => (!topic || data.topics.includes(topic)) && (!featured || data.featured))
+	.sort((a, b) => rank(a) - rank(b));
+if (ids) {
+	const missing = ids.filter((id) => !all.some((r) => r.id === id));
+	if (missing.length) throw new Error(`Unknown resource id(s): ${missing.join(', ')}`);
+	items = ids.map((id) => all.find((r) => r.id === id)!);
+}
+---
+
+<div class="resource-list" data-resource-list>
+	{
+		items.map(({ data }) => (
+			<Resource href={data.url} title={data.title} source={data.source} kind={data.kind}>
+				{data.note}
+			</Resource>
+		))
+	}
+</div>

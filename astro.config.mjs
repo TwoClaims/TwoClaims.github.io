@@ -43,7 +43,13 @@ export default defineConfig({
 						{ label: 'What would this mean for me?', slug: 'respond/what-now' },
 					],
 				},
-				{ label: 'Go deeper', slug: 'resources' },
+				{
+					label: 'Go deeper',
+					items: [
+						{ label: 'Where to start', slug: 'resources' },
+						{ label: 'Resource library', slug: 'resources/library' },
+					],
+				},
 			],
 		}),
 	],

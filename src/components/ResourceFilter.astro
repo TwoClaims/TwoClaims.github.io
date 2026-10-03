@@ -1,0 +1,102 @@
+---
+/**
+ * Filter buttons for the resource library: narrows every resource card on the
+ * page to one kind (Video, Book, …) and hides topic sections left empty.
+ * Without JavaScript the buttons stay hidden and everything is shown.
+ */
+import { getCollection } from 'astro:content';
+import { kinds } from '../data/topics';
+
+const resources = await getCollection('resources');
+const present = kinds
+	.map((kind) => ({ kind, count: resources.filter((r) => r.data.kind === kind).length }))
+	.filter(({ count }) => count > 0);
+---
+
+<tc-resource-filter class="not-content" hidden>
+	<div class="filter" role="group" aria-label="Filter resources by type">
+		<button type="button" aria-pressed="true" data-kind="">
+			All <span>{resources.length}</span>
+		</button>
+		{
+			present.map(({ kind, count }) => (
+				<button type="button" aria-pressed="false" data-kind={kind}>
+					{kind}s <span>{count}</span>
+				</button>
+			))
+		}
+	</div>
+</tc-resource-filter>
+
+<script>
+	class ResourceFilter extends HTMLElement {
+		connectedCallback() {
+			this.hidden = false;
+			const buttons = [...this.querySelectorAll<HTMLButtonElement>('button')];
+			buttons.forEach((button) =>
+				button.addEventListener('click', () => {
+					buttons.forEach((b) => b.setAttribute('aria-pressed', String(b === button)));
+					this.apply(button.dataset.kind ?? '');
+				})
+			);
+		}
+
+		apply(kind: string) {
+			const content = document.querySelector('.sl-markdown-content');
+			if (!content) return;
+			content.querySelectorAll<HTMLElement>('.resource').forEach((card) => {
+				card.hidden = kind !== '' && card.dataset.kind !== kind;
+			});
+			// Hide a topic heading (and its list) when none of its cards are visible.
+			content.querySelectorAll<HTMLElement>('[data-resource-list]').forEach((list) => {
+				const empty = !list.querySelector('.resource:not([hidden])');
+				list.hidden = empty;
+				const heading = list.previousElementSibling;
+				if (heading instanceof HTMLElement && heading.matches('.sl-heading-wrapper, h2')) {
+					heading.hidden = empty;
+				}
+			});
+		}
+	}
+	customElements.define('tc-resource-filter', ResourceFilter);
+</script>
+
+<style>
+	tc-resource-filter[hidden] {
+		display: none;
+	}
+	.filter {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.5rem;
+	}
+	button {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.4rem;
+		padding: 0.35rem 0.85rem;
+		border: 1px solid var(--tc-border);
+		border-radius: 999px;
+		background: var(--tc-surface);
+		color: var(--sl-color-gray-2);
+		font: inherit;
+		font-size: var(--sl-text-sm);
+		cursor: pointer;
+	}
+	button:hover {
+		border-color: var(--sl-color-accent);
+	}
+	button[aria-pressed='true'] {
+		background: var(--sl-color-accent);
+		border-color: var(--sl-color-accent);
+		color: var(--sl-color-black);
+		font-weight: 600;
+	}
+	:root[data-theme='light'] button[aria-pressed='true'] {
+		color: hsl(42, 45%, 98%);
+	}
+	span {
+		font-size: var(--sl-text-xs);
+		opacity: 0.75;
+	}
+</style>
